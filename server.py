@@ -17,8 +17,7 @@ def homepage():
     musicUrlFinder('listentothis', 'new')
     rand = getRandItem(FindYoutubeID())
     yt_url = 'https://www.youtube.com/watch?v={video_id}'.format(video_id=rand)
-    print len(rand)
-    print rand
+
     if len(rand) == 0: 
         return render_template('VideoNotFound.html'), 404
 
