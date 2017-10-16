@@ -1,0 +1,46 @@
+<html>
+<title> datapor.no </title>
+    <head>
+        <script src="{{ url_for('static', filename='dataporno.css') }}"></script>
+    </head>
+
+<!-- Hello code Lurkers/ Bug Hunter... gtfo -->
+
+<body>
+        <h1> Datapor.no  </h1>
+    <center>
+        <h2>{{yt_name}}</h2>
+        <div id="player">
+            <script src="http://www.youtube.com/player_api"> </script>
+            <script>
+            
+            // create youtube player
+            var player;
+            function onYouTubePlayerAPIReady() {
+                player = new YT.Player('player', {
+                  height: '480',
+                  width: '835',
+                  videoId: '{{ yt_id }}',
+                  events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                  }
+                });
+            }
+
+            // autoplay video
+            function onPlayerReady(event) {
+                event.target.playVideo();
+            }
+
+            // when video ends
+            function onPlayerStateChange(event) {        
+                if(event.data === 0) {            
+                    location.reload(true);;
+                }
+            }
+        </script>
+        </div>
+    </center>
+</body>
+</html>
