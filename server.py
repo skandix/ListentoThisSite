@@ -15,14 +15,16 @@ def homepage():
     musicUrlFinder('listentothis', 'new')
     rand = getRandomID()
     print "[+] i Found id's {0}".format(len(rand))
+    print "\n{0}\n{1}\n".format(rand,getRandomID())
     if getYTstatus(rand):
         return render_template('index.html', yt_id=rand)
     else:
-        page_not_found()
+        return render_template('VideoNotFound.html'), 404
+       
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+    return render_template('VideoNotFound.html'), 404
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=8069 ,debug=True, threaded=True)
