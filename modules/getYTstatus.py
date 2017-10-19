@@ -1,19 +1,10 @@
 import requests
 import re
 
-def getYTstatus(url):
-        
-	regexp = re.compile(ur'"submessage">[\n]\S+[a-zA-Z .]+')
-	loot = re.findall(regexp, requests.get(url).text)
+def getYTstatus(id, yt="https://www.youtube.com/watch?v="): 
+	regexp = re.compile(ur'"submessage">[\n]\S+[\w .]+')
+	loot = re.findall(regexp, requests.get(yt+id).text)
 	if loot:
 		return False
 	else:
 		return True
-
-
-# uncomment to see that it works when something aren't avaliable, and when they are
-# video not avaliable!
-#print getYTstatus("https://www.youtube.com/watch?v=hopYXDBQIso")
-
-# video avaliable
-print getYTstatus("https://www.youtube.com/watch?v=NCjgXQ6IGOU")

@@ -15,9 +15,10 @@ def homepage():
     musicUrlFinder('listentothis', 'new')
     rand = getRandomID()
     print "[+] i Found id's {0}".format(len(rand))
-    return render_template('index.html', yt_id=rand)
-
-
+    if getYTstatus(rand):
+        return render_template('index.html', yt_id=rand)
+    else:
+        page_not_found()
 
 @app.errorhandler(404)
 def page_not_found(e):
