@@ -13,9 +13,8 @@ app = Flask(__name__)
 def homepage():
  
     musicUrlFinder('listentothis', 'new')
-    rand = getRandItem(FindYoutubeID())
+    rand = getRandomID()
     yt_url = 'https://www.youtube.com/watch?v={video_id}'.format(video_id=rand)
-
     if len(rand) == 0: 
         print rand
         return render_template('VideoNotFound.html'), 404
