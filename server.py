@@ -16,6 +16,8 @@ def homepage():
     rand = getRandomID()
     print "[+] i Found id's {0}".format(len(rand))
     print "\n{0}\n{1}\n".format(rand,getRandomID())
+
+    # Checks if video is avaliable here...
     if getYTstatus(rand):
         return render_template('index.html', yt_id=rand)
     else:
@@ -27,4 +29,4 @@ def page_not_found(e):
     return render_template('VideoNotFound.html'), 404
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=8069 ,debug=True, threaded=True)
+    app.run(host="0.0.0.0",port=8069 ,debug=False, threaded=True)
