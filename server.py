@@ -14,24 +14,14 @@ def homepage():
  
     musicUrlFinder('listentothis', 'new')
     rand = getRandomID()
-    yt_url = 'https://www.youtube.com/watch?v={video_id}'.format(video_id=rand)
-    if len(rand) == 0: 
-        print rand
-        return render_template('VideoNotFound.html'), 404
+    print "[+] i Found id's {0}".format(len(rand))
+    return render_template('index.html', yt_id=rand)
 
-    elif (len(rand) != 0) and (getYTstatus(yt_url)):
-        print "[+] i Found id's {0}".format(len(FindYoutubeID()))
-        print rand
-        return render_template('index.html', yt_id=rand, yt_name=getTitle(rand)), 200
+
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-
     app.run(host="0.0.0.0",port=8069 ,debug=True, threaded=True)
-    #reddit.musicUrlFinder('listentothis')
-    #reddit.gatherYTIds()
-    #print onlyID
-
