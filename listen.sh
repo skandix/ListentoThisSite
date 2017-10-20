@@ -1,2 +1,3 @@
 #!/bin/sh
-screen -dmS listen python /home/skandix/gitclone/ListentoThisSite/server.py
+source $HOME/.virtualenvs/listen/bin/activate
+screen -dmS listen python /opt/ListentoThisSite/server.py
