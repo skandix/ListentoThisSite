@@ -19,7 +19,7 @@ def homepage():
         rand = getRandomID()
         title = checkVideoById(rand)
     print "[+] i Found id {0}".format(rand)
-    print "[+] Title {}".format(title)
+    print "[+] Title {}".format(title.encode('utf-8'))
     if getYTstatus(rand):
         return render_template('index.html', yt_id=rand,title=title)
     else:
