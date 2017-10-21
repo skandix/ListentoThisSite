@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 from modules.getYTstatus import *
 from modules.reddit import *
+from modules.youtube import *
 import logging
 import random
 import os
@@ -11,13 +12,16 @@ app = Flask(__name__)
 def homepage():
  
     musicUrlFinder('listentothis', 'new')
-    rand = getRandomID()
-    print "[+] i Found id's {0}".format(len(rand))
-    print "\n{0}\n{1}\n".format(rand,getRandomID())
-
-    # Checks if video is avaliable here...
+    rand = ""
+    title = ""
+    # Fetch a random ID until we get a valid one
+    while(len(title) == 0):
+        rand = getRandomID()
+        title = checkVideoById(rand)
+    print "[+] i Found id {0}".format(rand)
+    print "[+] Title {}".format(title)
     if getYTstatus(rand):
-        return render_template('index.html', yt_id=rand)
+        return render_template('index.html', yt_id=rand,title=title)
     else:
         return render_template('VideoNotFound.html'), 404
        
