@@ -1,7 +1,5 @@
 from flask import Flask, request, render_template
-from modules.getRandItem import *
 from modules.getYTstatus import *
-from modules.getID import *
 from modules.reddit import *
 import logging
 import random
