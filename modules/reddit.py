@@ -1,3 +1,4 @@
+from configHandler import config
 import config
 import praw
 import re
@@ -7,33 +8,34 @@ youtube = []
 onlyID = set()
 SAVEDLOOT = 'pickles/loot.p'
 
-def musicUrlFinder(thread, cat):
-    r = praw.Reddit(client_id=config.r_cli_id
-                    ,client_secret=config.r_cli_secret
-                    ,user_agent=config.r_user_agent) 
+def musicUrlFinder(thread, category):
+
+    r = praw.Reddit(client_id=config.config('Reddit','clientID')
+                    ,client_secret=config.config('Reddit','clientSecret')
+                    ,user_agent=config.config('Reddit','userAgent')) 
     sub = r.subreddit(thread)
 
-    if cat is "new":
-        for subz in sub.new():
-            if "youtube" in subz.url or "youtu.be" in subz.url:
-                if subz.url not in youtube:
-                   youtube.append(subz.url)
+    if category is "new":
+        for subreddit in sub.new():
+            if "youtube" in subreddit.url or "youtu.be" in subreddit.url:
+                if subreddit.url not in youtube:
+                   youtube.append(subreddit.url)
                 else:
                     pass
 
-    elif cat is "hot":
-        for subz in sub.hot():
-            if "youtube" in subz.url or "youtu.be" in subz.url:
-                if subz.url not in youtube:
-                   youtube.append(subz.url)
+    elif category is "hot":
+        for subreddit in sub.hot():
+            if "youtube" in subreddit.url or "youtu.be" in subreddit.url:
+                if subreddit.url not in youtube:
+                   youtube.append(subreddit.url)
                 else:
                     pass
 
-    elif cat is "top":
-        for subz in sub.top():
-            if "youtube" in subz.url or "youtu.be" in subz.url:
-                if subz.url not in youtube:
-                   youtube.append(subz.url)
+    elif category is "top":
+        for subreddit in sub.top():
+            if "youtube" in subreddit.url or "youtu.be" in subreddit.url:
+                if subreddit.url not in youtube:
+                   youtube.append(subreddit.url)
                 else:
                     pass
     parseURLs()
@@ -73,27 +75,3 @@ def loadIds():
     if os.path.isfile(SAVEDLOOT):
         global onlyID
         onlyID = pickle.load(open(SAVEDLOOT,'rb'))
-
-def FindYoutubeID():
-
-    output = []
-
-    for k in youtube:
-        loot = re.search(re.compile(r'(?:\/watch.([v=]+[^+]{11})|youtu.be/([^+]{11}))'), k)
-        if loot:
-            if "/watch?v=" in loot.group():
-                watchId = str(loot.group()).replace('/watch?v=', '')
-                if watchId not in output:
-                    output.append(watchId)
-                else:
-                    pass
-
-            else:
-                if loot.group() not in output:                
-                    output.append(loot.group())
-                else:
-                    pass
-
-    return output
-#musicUrlFinder('listentothis', 'new')
-#FindYoutubeID(youtube)

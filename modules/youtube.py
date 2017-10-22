@@ -4,9 +4,13 @@ def checkVideoById(ID):
     :param ID: The ID to be checked
     :return: The title of the video
     """
-    import config
+
+    from configHandler import config
     import googleapiclient.discovery as yt
-    youtube = yt.build(serviceName=config.yt_api_service, version=config.yt_api_ver,developerKey=config.yt_cli_key)
+    youtube = yt.build(serviceName=config('Youtube','apiService'), 
+                       version=config('Youtube','apiVersion'),
+                       developerKey=config('Youtube','clientKey'))
+    
     video = youtube.videos().list(
         id=ID,part='snippet'
     ).execute()
