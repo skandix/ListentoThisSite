@@ -1,50 +1,87 @@
+
+<!DOCTYPE html>
 <html>
-<title> listentothis.datapor.no </title>
-    <head>
-        <script src="{{ url_for('static', filename='dataporno.css') }}"></script>
-    </head>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>▶️ {{ args[1] }}</title>
 
-<!-- Hello code Lurkers/ Bug Hunter... gtfo -->
-
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<!-- Bulma Version 0.6.0 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css"
+	integrity="sha256-HEtF7HLJZSC3Le1HcsWbz1hDYFPZCqDhZa9QsCgVUdw=" crossorigin="anonymous" />
+        <link href="{{ url_for('static', filename='background.css') }}" rel="stylesheet">
+</head>
 <body>
-        <h1> listentothis.datapor.no  </h1>
-    <center>
-        <h2>{{ title }}</h2>
-        <p> WtF is this?. This is just a simple site that will get id's from the subreddit /r/listentothis and play it in a
-        somewhat random order... kek. </p>
-        <p> the site is work in progress, so if it happend to not display a random song or music video, do not panic, just give
-        it a samll whack or a refresh and it migth work again ;) </p>
-        <div id="player">
+  <section class="hero is-info is-fullheight">
+    <div class="hero-head">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+            <a class="navbar-item is-active" href="../">
+		    <h1>listentothis.datapor.no</h1>
+	    </a>
+            <span class="navbar-burger burger" data-target="navbarMenu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+          <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-end">
+              <a class="navbar-item is-active">
+                Home
+              </a>
+              <a class="navbar-item is-active">
+	      	About
+	      </a>
+              <a href="https://github.com/skandix/ListentoThisSite"  class="navbar-item is-active">
+		Github
+	      </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="hero-body">
+      <div class="container has-text-centered">
+	      <h1> {{args[1]}} </h1>
+	      <br></br>
+	      <div id="player">
             <script src="http://www.youtube.com/player_api"> </script>
             <script>
-            
-            // create youtube player
             var player;
             function onYouTubePlayerAPIReady() {
                 player = new YT.Player('player', {
-                  height: '480',
-                  width: '835',
-                  videoId: '{{ yt_id }}',
+                  height: '600',
+		  width: '1024',
+                  videoId: '{{ args[0] }}',
                   events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
                   }
                 });
             }
-
             // autoplay video
             function onPlayerReady(event) {
                 event.target.playVideo();
             }
-
             // when video ends
-            function onPlayerStateChange(event) {        
-                if(event.data === 0) {            
-                    location.reload(true);;
+            function onPlayerStateChange(event) {
+                if(event.data === 0) {
+        	location.reload(true);;
                 }
             }
         </script>
         </div>
-    </center>
+      </div>
+    </div>
+
+  </section>
+  <script async  src="{{ url_for('static', filename='bulma.js') }}"></script>
 </body>
 </html>
+

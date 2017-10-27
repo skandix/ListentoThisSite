@@ -1,30 +1,27 @@
+#!/bin/python
+from modules.reddit import musicUrlFinder, getRandomID
 from flask import Flask, request, render_template
-from modules.getYTstatus import *
-from modules.reddit import *
-from modules.youtube import *
-import logging
+from modules.youtube import checkVideoById
 import random
 import os
 
 app = Flask(__name__)
 
 @app.route('/')
-def homepage():
+def homepage(rand = "", title= ""):
 
     musicUrlFinder('listentothis', 'new')
-    rand = ""
-    title = ""
+
     # Fetch a random ID until we get a valid one
     while(len(title) == 0):
         rand = getRandomID()
         title = checkVideoById(rand)
-    print "[+] i Found id {0}".format(rand)
-    print "[+] Title {}".format(title.encode('utf-8'))
-    if getYTstatus(rand):
-        return render_template('index.html', yt_id=rand,title=title)
-    else:
-        return render_template('VideoNotFound.html'), 404
 
+    print "[+] Found ID: {0}".format(rand)
+    print "[+] Title: {0}".format(title.encode('utf-8'))
+
+    # passing arguments as a list, then you can recall them by index
+    return render_template('index.html', args=[rand, title])
 
 @app.errorhandler(404)
 def page_not_found(e):
