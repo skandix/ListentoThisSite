@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>▶️ {{ args[1] }}</title>
+  <title>▶️ {{args[1]}}</title>
 
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -32,9 +32,6 @@
           <div id="navbarMenu" class="navbar-menu">
             <div class="navbar-end">
               <a class="navbar-item is-active">
-                Home
-              </a>
-              <a class="navbar-item is-active">
 	      	About
 	      </a>
               <a href="https://github.com/skandix/ListentoThisSite"  class="navbar-item is-active">
@@ -58,7 +55,7 @@
                 player = new YT.Player('player', {
                   height: '600',
 		  width: '1024',
-                  videoId: '{{ args[0] }}',
+                  videoId: '{{args[0]}}',
                   events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
