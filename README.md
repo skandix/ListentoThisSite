@@ -12,5 +12,5 @@ pip install -r requirements.txt
 ```
 
 ## Todo
-- [] Refresh/update the set of id's every n-hours.
-- [] Update the session rather than forcing a reload of the site.
+- [ ] Refresh/update the set of id's every n-hours.
+- [ ] Update the session rather than forcing a reload of the site.
