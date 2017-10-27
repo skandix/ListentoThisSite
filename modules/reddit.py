@@ -1,5 +1,4 @@
 from configHandler import config
-import config
 import praw
 import re
 
@@ -10,9 +9,9 @@ SAVEDLOOT = 'pickles/loot.p'
 
 def musicUrlFinder(thread, category):
 
-    r = praw.Reddit(client_id=config.config('Reddit','clientID')
-                    ,client_secret=config.config('Reddit','clientSecret')
-                    ,user_agent=config.config('Reddit','userAgent')) 
+    r = praw.Reddit(client_id=config('Reddit','clientID')
+                    ,client_secret=config('Reddit','clientSecret')
+                    ,user_agent=config('Reddit','userAgent'))
     sub = r.subreddit(thread)
 
     if category is "new":
