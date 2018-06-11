@@ -1,4 +1,3 @@
-from configHandler import config
 import praw
 import re
 
@@ -7,11 +6,11 @@ youtube = []
 onlyID = set()
 SAVEDLOOT = 'pickles/loot.p'
 
-def musicUrlFinder(thread, category):
+def musicUrlFinder(thread, categy):
 
-    r = praw.Reddit(client_id=config('Reddit','clientID')
-                    ,client_secret=config('Reddit','clientSecret')
-                    ,user_agent=config('Reddit','userAgent'))
+    r = praw.Reddit(client_id='clientID'
+                    ,client_secret='clientSecret'
+                    ,user_agent='listen.datapor.no'
     sub = r.subreddit(thread)
 
     if category is "new":
@@ -74,3 +73,5 @@ def loadIds():
     if os.path.isfile(SAVEDLOOT):
         global onlyID
         onlyID = pickle.load(open(SAVEDLOOT,'rb'))
+
+
