@@ -6,9 +6,9 @@ Then when you visit the site it will pick a random id.
 
 ## Install
 ```bash
-pip install -r requirements.txt
+pipenv install
 
-./runserver.py
+pipenv run python server.py
 ```
 
 ## Todo

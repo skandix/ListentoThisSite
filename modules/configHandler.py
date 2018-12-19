@@ -4,4 +4,3 @@ def config(service, element):
     with open('./config.json') as config:
         data = json.load(config)
     return (data[service][element])
-

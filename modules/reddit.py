@@ -1,6 +1,6 @@
-from configHandler import config
 import praw
 import re
+
 
 # lists for collected songs.
 youtube = []
@@ -9,9 +9,8 @@ SAVEDLOOT = 'pickles/loot.p'
 
 def musicUrlFinder(thread, category):
 
-    r = praw.Reddit(client_id=config('Reddit','clientID')
-                    ,client_secret=config('Reddit','clientSecret')
-                    ,user_agent=config('Reddit','userAgent'))
+    r = praw.Reddit(client_id="5yoOpzdFHmJ3FQ",client_secret="vftMR_UJlftmgVsu5TjLgVPWbLc",user_agent="reddit")
+
     sub = r.subreddit(thread)
 
     if category is "new":

@@ -1,12 +1,12 @@
 {
 	"Reddit":{
-		"clientID":"YOUR_CLIENT",
-		"clientSecret":"YOUR_SECRET",
+		"clientID":"5yoOpzdFHmJ3FQ",
+		"clientSecret":"vftMR_UJlftmgVsu5TjLgVPWbLc",
 		"userAgent":"reddit"
 	},
 	"Youtube":{
 		"apiVersion":"v3",
 		"apiService":"youtube",
-		"clientKey":"YOUR_KEY"
+		"clientKey":"AIzaSyAOENjfhVDNY3q1X0W4eq00YHpZeti9X2Q"
 	}
 }

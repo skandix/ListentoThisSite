@@ -1,21 +1,25 @@
-def checkVideoById(ID):
-    """
-    Uses the youtube API to check if we have a valid ID
-    :param ID: The ID to be checked
-    :return: The title of the video
-    """
+from requests import get
+from re import compile, findall
 
-    from configHandler import config
-    import googleapiclient.discovery as yt
-    youtube = yt.build(serviceName=config('Youtube','apiService'), 
-                       version=config('Youtube','apiVersion'),
-                       developerKey=config('Youtube','clientKey'))
-    
-    video = youtube.videos().list(
-        id=ID,part='snippet'
-    ).execute()
+def getYTstatus(id):
+    url = ("https://www.youtube.com/watch?v={:}".format(id))
 
-    # If we have a valid ID, and presumebly a valid video, we get a reponse of length 1
-    if len(video.get("items",[])) == 1:
-        return video.get("items",[])[0]['snippet']['title']
-    return ""
+    regexp = compile(r'"submessage">[\n]\S+[\w .]+')
+    loot = findall(regexp, get(url).text)
+
+    if loot:
+            return False
+    else:
+            return True
+def getTitle(id):
+    url = ("https://www.youtube.com/watch?v={:}".format(id))
+
+    regex = compile(r'<meta name="twitter:title" content="[^.]+">')
+    loot = findall(regex, get(url).text)
+
+    for titles in loot:
+        return titles.replace('<meta name="twitter:title" content="','').replace('">','')
+
+
+if __name__ == '__main__':
+	print (getTitle("zNcxJxBnyXQ"))
